@@ -1,12 +1,12 @@
 Vue.createApp({
-    data() {
-        return {
-            message: 'Hello Vue 3!'
-        }
-    },
-    methods: {
-        setMessage(event) {
-            this.message = event.target.value;
-        }
+        data() {
+            return {
+                info: null
+            };
+        },
+    mounted() {
+        axios
+            .get('http://127.0.0.1:8000/api/posts/')
+            .then(response => (this.info = response));
     }
 }).mount('#app');

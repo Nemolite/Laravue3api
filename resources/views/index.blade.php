@@ -11,10 +11,11 @@
     <header>
     </header>
         <div id="app">
-            <p>@{{message}}</p>
+            <p>@{{info}}</p>
         </div>
     <footer>
     </footer>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="{{ asset("js/main.js") }}"></script>
 </body>
