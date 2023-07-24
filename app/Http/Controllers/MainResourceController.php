@@ -12,12 +12,39 @@ class MainResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts= Post::all();
-        return response()->json([
-            'posts' => $posts,
-        ]);
+        $collection = Post::query();
+        $allowedFilterFields = (new Post())->getFillable();
+        $allowedSortFields = ['id','name', 'content','cat_id'];
+        $allowedSortDirections = ['asc','desc'];
+        // Извлечение праметров из строки запроса
+        //?sortby = name&sortdir=desc
+        $sortBy = $request->query('sortby','1d');
+        $sortDir = strtolower($request->query('sortdir','asc'));
+        if (!in_array($sortBy,$allowedSortFields)) $sortBy = 'id';
+        if (!in_array($sortDir,$allowedSortDirections)) $sortDir = 'asc';
+        foreach ($allowedFilterFields as $key){
+            if($paramFilter = $request->query('_'.$key)){
+                $paramFilter = preg_replace("([%_?+])","\\$1",$paramFilter);
+                $collection->where($key,'LIKE','%'.$paramFilter.'%');
+            }
+        }
+        //?_limit = 3
+        $limit = intval($request->query('limit',3));
+        $limit = min($limit,3);
+        $collection->limit($limit);
+        //?_offset = 0
+        $offset = intval($request->query('offset',0));
+        $offset = max($offset,0);
+        $collection->offset($offset);
+
+        return $collection->get();
+
+//        $posts= Post::all();
+//        return response()->json([
+//            'posts' => $posts,
+//        ]);
     }
 
     /**

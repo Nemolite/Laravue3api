@@ -7,6 +7,6 @@ Vue.createApp({
     mounted() {
         axios
             .get('http://127.0.0.1:8000/api/posts/')
-            .then(response => (this.info = response));
+            .then(response => (this.info = response.data.posts));
     }
 }).mount('#app');
