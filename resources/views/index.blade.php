@@ -10,9 +10,26 @@
 <body>
     <header>
     </header>
-        <div id="app">
-            <p>@{{info}}</p>
+    <div class="main">
+        <div class="main-sidebar">
+            <div id="category">
+                <div class="main-content-sidebar" v-for="category in categories">
+                    <h3 >@{{ category.name }}</h3>
+                </div>
+            </div>
         </div>
+        <div class="main-content">
+            <div id="app">
+                <div class="main-content-posts" v-for="post in posts">
+                    <h3 >@{{ post.name }}</h3>
+                    <p >@{{ post.content }}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
     <footer>
     </footer>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>

@@ -22,3 +22,7 @@ Route::resources([
     'posts' => \App\Http\Controllers\MainResourceController::class,
 ]);
 
+Route::resources([
+    'categories' => \App\Http\Controllers\CategoryResourceController::class,
+]);
+
