@@ -24,11 +24,14 @@ Vue.createApp({
     }
 }).mount('#category');
 
-const Home = { template: '<h2>Главная страница</h2>' }
+const Index = { template: '<h2>Главная</h2>' }
+const Contact = { template: '<h2>Наши контакты</h2>' }
 const About = { template: '<h2>О нас</h2>' }
 
+
 const routes = [
-    { path: '/', component: Home },
+    { path: '/', component: Index },
+    { path: '/contact', component: Contact },
     { path: '/about', component: About }
 ];
 
@@ -40,3 +43,19 @@ const router = VueRouter.createRouter({
 const app = Vue.createApp({});
 app.use(router);
 app.mount('#menu');
+
+
+const Counter = {
+    data() {
+        return {
+            counter: 0
+        }
+    },
+    mounted() {
+        setInterval(() => {
+            this.counter++
+        }, 1000)
+    }
+}
+
+Vue.createApp(Counter).mount('#counter')

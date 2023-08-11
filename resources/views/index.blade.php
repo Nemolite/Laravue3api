@@ -15,7 +15,7 @@
         <div class="header-menu">
             <div id="menu">
                 <ul>
-                    <li><router-link to="/">Главная</router-link></li>
+                    <li><router-link to="/contact">Наши контакты</router-link></li>
                     <li><router-link to="/about">О нас</router-link></li>
                 </ul>
                 <router-view></router-view>
@@ -40,6 +40,11 @@
                     <p >@{{ post.content }}</p>
                 </div>
             </div>
+            <div id="counter">
+                Счётчик: @{{ counter }}
+            </div>
+
+
         </div>
 
     </div>
